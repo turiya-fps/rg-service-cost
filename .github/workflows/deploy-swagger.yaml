@@ -1,0 +1,58 @@
+name: 'Deploy: Swagger'
+
+on:
+  push:
+    branches:
+      - next
+    paths:
+      - .github/workflows/deploy-swagger.yaml
+      - service/src/swagger.yaml
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+
+  deploy:
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+
+      - run: mkdir service/src/swagger-ui
+
+      - name: Generate Swagger UI
+        uses: Legion2/swagger-ui-action@v1
+        with:
+          output: service/src/swagger-ui
+          spec-file: service/src/swagger.yaml
+
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: 'service/src/swagger-ui'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+
+      - name: Smoketest URL
+        run: |
+          if [ "$(curl -ILs ${{ steps.deployment.outputs.page_url }}  | grep "HTTP/2 200")" ] ; then
+            exit 0
+          else
+            echo -e "Failed to get a 200 response from URL" && exit 1;
+          fi

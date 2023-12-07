@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "version": "0.0.0-dev",
+  "name": "@project-rouge/service-cost-deploy",
+  "engines": {
+    "node": ">=16.16.0",
+    "npm": ">=8.15.0"
+  },
+  "dependencies": {
+    "@cdktf/provider-aws": "^13.0.0",
+    "@matt-usurp/grok": "^1.1.0",
+    "@project-rouge/infrastructure-core": "^2.0.6",
+    "@project-rouge/service-core": "^1.7.7",
+    "cdktf": "^0.15.5",
+    "cdktf-cli": "^0.15.5",
+    "chalk": "^4.1.2",
+    "constructs": "^10.2.31"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.115"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "version": "0.0.0-dev",
+  "name": "service-root",
+  "workspaces": [
+    "client",
+    "deploy",
+    "service"
+  ],
+  "engines": {
+    "node": ">=16.16.0",
+    "npm": ">=8.15.0"
+  },
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.8.0",
+    "@commitlint/config-conventional": "^17.8.0",
+    "@project-rouge/service-core-eslint": "^1.0.7",
+    "@tsconfig/node16": "^16.1.1",
+    "@types/eslint": "^8.37.0",
+    "@types/node": "^16.18.58",
+    "@vitest/coverage-v8": "^0.34.6",
+    "esbuild": "^0.19.4",
+    "husky": "^8.0.3",
+    "ts-node": "^10.9.1",
+    "tsx": "^3.12.7",
+    "typescript": "^5.0.4",
+    "vitest": "^0.34.6"
+  }
+}

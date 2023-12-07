@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.json",
+
+  "compilerOptions": {
+    "baseUrl": ".",
+
+    "paths": {
+      "@project-rouge/service-cost-client/src/*": ["../client/src/*"],
+    },
+  },
+
+  "files": [
+    "./src/handler/events.d.ts",
+  ],
+
+  "include": [
+    "./src",
+  ],
+}
